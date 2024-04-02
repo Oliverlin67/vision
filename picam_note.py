@@ -34,25 +34,6 @@ def calculate_angle(x, y, w, h, image_width):
     angle = distance_to_center * (fov_x / image_width)
     return angle * 100
 
-def draw_text(
-        img,
-        text,
-        pos=(0, 0),
-        font=cv2.FONT_HERSHEY_PLAIN,
-        font_scale=3,
-        font_thickness=2,
-        text_color=(0, 255, 0),
-        text_color_bg=(0, 0, 0)
-    ):
-
-    x, y = pos
-    text_size, _ = cv2.getTextSize(text, font, font_scale, font_thickness)
-    text_w, text_h = text_size
-    cv2.rectangle(img, (x-3, y-3), (x + text_w + 6, y + text_h + 6), text_color_bg, -1)
-    cv2.putText(img, text, (x, y + text_h + font_scale - 1), font, font_scale, text_color, font_thickness)
-
-    return text_size
-
 # Lists to store detected objects
 detected_objects = []
 
@@ -67,29 +48,26 @@ while True:
         for box in boxes:
             confidence = math.ceil((box.conf[0]*100))/100
 
+            """
             if confidence < 0.6:
                 continue
+            """
 
             x1, y1, x2, y2 = box.xyxy[0]
             x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
 
             x, y, w, h = int(x1), int(y1), int(x2 - x1), int(y2 - y1)
 
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 255), 3)
+            #cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 255), 3)
 
             class_id = int(box.cls[0])
 
             distance = calculate_distance(class_known_widths[class_id], mtx[0, 0], w)
             angle = calculate_angle(x, y, w, h, frame.shape[1])
 
-            org = (x1, y1)
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            fontScale = 1
-            thickness = 2
-
             print(class_names[class_id] + f"(conf: {confidence:.2f}%, dis: {distance:.2f}m, angle: {angle:.2f} deg)")
             # Append detected object position to list
-            detected_objects.append((angle*np.pi/180, distance, class_names[class_id]))
+            #detected_objects.append((angle*np.pi/180, distance, class_names[class_id]))
 
     #cv2.imshow('Frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
