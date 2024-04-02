@@ -21,7 +21,7 @@ class_color = [(180, 0, 0), (0, 180, 0)] # (unit: cm)
 
 # Initialize the capture
 picam2 = Picamera2()
-picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))
+picam2.configure(picam2.create_preview_configuration(main={"format": 'BRG888', "size": (640, 480)}))
 picam2.start()
 
 def calculate_distance(known_width, focal_length, per_width):
