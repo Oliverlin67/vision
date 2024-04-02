@@ -123,5 +123,3 @@ while True:
 # Turn off Matplotlib interactive mode
 plt.ioff()
 plt.show(block=True)
-
-cv2.destroyAllWindows()
