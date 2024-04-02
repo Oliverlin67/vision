@@ -53,12 +53,6 @@ def draw_text(
 
     return text_size
 
-# Turn on Matplotlib interactive mode
-plt.ion()
-
-# Create Matplotlib figure and axis
-fig, ax = plt.subplots(figsize=(6,6), subplot_kw={'projection': 'polar'})
-
 # Lists to store detected objects
 detected_objects = []
 
@@ -106,20 +100,6 @@ while True:
             # Append detected object position to list
             detected_objects.append((angle*np.pi/180, distance, class_names[class_id]))
 
-    # Plot radar after all objects are detected
-    if detected_objects:
-        ax.clear()
-        for angle, distance, class_name in detected_objects:
-            ax.plot(angle, distance, 'ro')
-            ax.text(angle, distance, class_name, fontsize=8, ha='left', va='bottom', color='black')
-        fig.canvas.draw()
-        detected_objects = []
-
-
     #cv2.imshow('Frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
-# Turn off Matplotlib interactive mode
-plt.ioff()
-plt.show(block=True)
