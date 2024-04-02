@@ -1,0 +1,1 @@
+curl -o FRC2024.zip 'https://api.datasetcolab.com/dataset/download/FRC2024?api=OwfSCN6ohPHiEfOOcbi9hGGF&datasetType=YOLO&classes=NORO'
