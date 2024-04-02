@@ -87,16 +87,7 @@ while True:
             fontScale = 1
             thickness = 2
 
-            draw_text(
-                img=frame,
-                text=class_names[class_id] + f"(conf: {confidence:.2f}%, dis: {distance:.2f}m, angle: {angle:.2f} deg)",
-                pos=org,
-                font=font,
-                font_scale=fontScale,
-                font_thickness=thickness,
-                text_color=(255, 255, 255),
-                text_color_bg=class_color[class_id]
-            )
+            print(class_names[class_id] + f"(conf: {confidence:.2f}%, dis: {distance:.2f}m, angle: {angle:.2f} deg)")
             # Append detected object position to list
             detected_objects.append((angle*np.pi/180, distance, class_names[class_id]))
 
