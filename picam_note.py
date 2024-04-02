@@ -116,7 +116,7 @@ while True:
         detected_objects = []
 
 
-    cv2.imshow('Frame', frame)
+    #cv2.imshow('Frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
@@ -124,5 +124,4 @@ while True:
 plt.ioff()
 plt.show(block=True)
 
-cap.release()
 cv2.destroyAllWindows()
